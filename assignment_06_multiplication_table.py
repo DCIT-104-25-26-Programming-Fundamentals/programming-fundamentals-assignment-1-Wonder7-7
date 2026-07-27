@@ -55,3 +55,52 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def print_table(number):
+    """Print the multiplication table for `number` from 1 to 12."""
+    print(f"Multiplication Table for {number}:")
+    for i in range(1, 13):
+        print(f"{number}  x  {i:<2} =  {number * i}")
+
+
+def print_tables_up_to(n):
+    """Print multiplication tables for every number from 1 to n."""
+    for number in range(1, n + 1):
+        print_table(number)
+        if number != n:
+            print("-" * 29)
+
+
+def get_positive_int(prompt):
+    """Prompt the user until they enter a positive integer, or return None
+    if the input is invalid."""
+    raw = input(prompt)
+    try:
+        value = int(raw)
+    except ValueError:
+        return None
+
+    if value <= 0:
+        return None
+
+    return value
+
+
+def main():
+    number = get_positive_int("Enter a number: ")
+    if number is None:
+        print("Error: Please enter a positive integer.")
+        return
+
+    print_table(number)
+
+    print("\n--- Bonus: Tables from 1 to N ---")
+    n = get_positive_int("Enter N: ")
+    if n is None:
+        print("Error: Please enter a positive integer.")
+        return
+
+    print_tables_up_to(n)
+
+
+if __name__ == "__main__":
+    main()
