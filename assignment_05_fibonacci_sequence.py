@@ -49,3 +49,71 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def generate_fibonacci(n):
+    """Return a list containing the first `n` Fibonacci numbers."""
+    sequence = []
+    a, b = 0, 1
+
+    for _ in range(n):
+        sequence.append(a)
+        a, b = b, a + b
+
+    return sequence
+
+
+def print_first_n_terms():
+    """Part A: ask for N and print the first N Fibonacci numbers."""
+    raw = input("How many terms? ")
+
+    try:
+        n = int(raw)
+    except ValueError:
+        print("Error: Please enter a valid whole number.")
+        return
+
+    if n <= 0:
+        print("Error: N must be a positive integer.")
+        return
+
+    sequence = generate_fibonacci(n)
+    print("Fibonacci sequence:", " ".join(str(num) for num in sequence))
+
+
+def is_fibonacci_number(number):
+    """Return True if `number` appears in the Fibonacci sequence."""
+    if number < 0:
+        return False
+
+    a, b = 0, 1
+    while a <= number:
+        if a == number:
+            return True
+        a, b = b, a + b
+
+    return False
+
+
+def check_number():
+    """Part B: ask for a number and report whether it's a Fibonacci number."""
+    raw = input("Enter a number to check: ")
+
+    try:
+        number = int(raw)
+    except ValueError:
+        print("Error: Please enter a valid whole number.")
+        return
+
+    if is_fibonacci_number(number):
+        print(f"{number} is a Fibonacci number.")
+    else:
+        print(f"{number} is NOT a Fibonacci number.")
+
+
+def main():
+    print_first_n_terms()
+    print()
+    check_number()
+
+
+if __name__ == "__main__":
+    main()
